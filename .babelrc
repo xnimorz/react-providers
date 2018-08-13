@@ -1,0 +1,29 @@
+{
+  "presets": [
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": [
+            "last 2 versions",
+            "last 2 ie_mob versions",
+            "last 2 Edge versions",
+            "Android >= 4.1",
+            "last 2 ChromeAndroid versions",
+            "Explorer >= 10",
+            "last 4 iOS versions",
+            "last 3 Safari versions",
+            "last 2 Opera versions",
+            "Firefox 38",
+            "Firefox ESR",
+            "last 2 Firefox versions",
+            "last 2 Chrome versions"
+          ]
+        },
+        "loose": true
+      }
+    ],
+    ["react"]
+  ],
+  "plugins": ["transform-object-assign", "transform-object-rest-spread", "transform-class-properties"]
+}
