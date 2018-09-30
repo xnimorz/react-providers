@@ -1,11 +1,12 @@
 {
   "name": "react-providers",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Library for creating your own business logic using react.context",
   "main": "./lib",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel ./src --out-dir ./lib"
+    "test": "jest",
+    "build": "tsc -p ./",
+    "start": "npm run build -- -w"
   },
   "keywords": [
     "context",
@@ -24,13 +25,21 @@
     "react": ">= 16.3.0"
   },
   "devDependencies": {
+    "@types/jest": "^23.3.2",
+    "@types/react": "^16.4.14",
     "babel-cli": "^6.26.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-assign": "^6.22.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
-    "jest": "^23.4.2",
-    "react": "^16.4.1"
+    "enzyme": "^3.6.0",
+    "enzyme-adapter-react-16": "^1.5.0",
+    "enzyme-to-json": "^3.3.4",
+    "jest": "^23.6.0",
+    "react": "^16.4.1",
+    "react-dom": "^16.5.2",
+    "ts-jest": "^23.10.3",
+    "typescript": "^3.0.3"
   }
 }

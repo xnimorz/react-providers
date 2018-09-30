@@ -1,0 +1,12 @@
+/* We include todomvc styles for our example. So we have to reset some of their styles */
+@import '../node_modules/todomvc-app-css/index.css';
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  min-width: 320px;
+  max-width: 10000px;
+  font: 16px Arial;
+  line-height: 1.57;
+}

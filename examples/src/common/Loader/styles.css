@@ -1,0 +1,23 @@
+.loader {
+  width: 34px;
+  height: 34px;
+  background: url(./loader.svg) 0 0 no-repeat;
+  animation-name: loader-spin;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.21, 0.64, 0.8, 0.41);
+  animation-fill-mode: forwards;
+  margin: auto;
+  transform-origin: 50% 50%;
+  display: block;
+}
+
+@keyframes loader-spin {
+  from {
+    transform: rotate(60deg);
+  }
+
+  to {
+    transform: rotate(2220deg);
+  }
+}

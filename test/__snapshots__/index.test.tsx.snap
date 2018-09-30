@@ -1,0 +1,194 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppProvider adds Context.Provider when rendering 1`] = `
+<Component
+  contexts={
+    Object {
+      "some": Object {
+        "Consumer": Object {
+          "$$typeof": Symbol(react.context),
+          "Consumer": [Circular],
+          "Provider": Object {
+            "$$typeof": Symbol(react.provider),
+            "_context": [Circular],
+          },
+          "_calculateChangedBits": null,
+          "_changedBits": 0,
+          "_changedBits2": 0,
+          "_currentRenderer": Object {},
+          "_currentRenderer2": null,
+          "_currentValue": Object {},
+          "_currentValue2": Object {},
+          "_defaultValue": Object {},
+        },
+        "Provider": [Function],
+      },
+    }
+  }
+>
+  <TodosContextProvider>
+    <div />
+  </TodosContextProvider>
+</Component>
+`;
+
+exports[`AppProvider renders correctly 1`] = `""`;
+
+exports[`AppProvider resolves dependencies in contexts 1`] = `
+<Component
+  contexts={
+    Object {
+      "contextWithDependency": Object {
+        "Consumer": Object {
+          "$$typeof": Symbol(react.context),
+          "Consumer": [Circular],
+          "Provider": Object {
+            "$$typeof": Symbol(react.provider),
+            "_context": [Circular],
+          },
+          "_calculateChangedBits": null,
+          "_changedBits": 0,
+          "_changedBits2": 0,
+          "_currentRenderer": Object {},
+          "_currentRenderer2": null,
+          "_currentValue": Object {},
+          "_currentValue2": Object {},
+          "_defaultValue": Object {},
+        },
+        "Provider": [Function],
+      },
+      "some": Object {
+        "Consumer": Object {
+          "$$typeof": Symbol(react.context),
+          "Consumer": [Circular],
+          "Provider": Object {
+            "$$typeof": Symbol(react.provider),
+            "_context": [Circular],
+          },
+          "_calculateChangedBits": null,
+          "_changedBits": 0,
+          "_changedBits2": 0,
+          "_currentRenderer": Object {},
+          "_currentRenderer2": null,
+          "_currentValue": Object {},
+          "_currentValue2": Object {},
+          "_defaultValue": Object {},
+        },
+        "Provider": [Function],
+      },
+    }
+  }
+>
+  <TodosContextProvider>
+    <use(ContextWithDependencyProvider)>
+      <ContextWithDependencyProvider
+        some={
+          Object {
+            "add": [Function],
+            "data": Object {
+              "list": Array [],
+            },
+          }
+        }
+      >
+        <div />
+      </ContextWithDependencyProvider>
+    </use(ContextWithDependencyProvider)>
+  </TodosContextProvider>
+</Component>
+`;
+
+exports[`AppProvider works with complex dependencies e.g. A depends on C, B depends both on A and on C 1`] = `
+<Component
+  contexts={
+    Object {
+      "a": Object {
+        "Consumer": Object {
+          "$$typeof": Symbol(react.context),
+          "Consumer": [Circular],
+          "Provider": Object {
+            "$$typeof": Symbol(react.provider),
+            "_context": [Circular],
+          },
+          "_calculateChangedBits": null,
+          "_changedBits": 0,
+          "_changedBits2": 0,
+          "_currentRenderer": Object {},
+          "_currentRenderer2": null,
+          "_currentValue": Object {},
+          "_currentValue2": Object {},
+          "_defaultValue": Object {},
+        },
+        "Provider": [Function],
+      },
+      "b": Object {
+        "Consumer": Object {
+          "$$typeof": Symbol(react.context),
+          "Consumer": [Circular],
+          "Provider": Object {
+            "$$typeof": Symbol(react.provider),
+            "_context": [Circular],
+          },
+          "_calculateChangedBits": null,
+          "_changedBits": 0,
+          "_changedBits2": 0,
+          "_currentRenderer": Object {},
+          "_currentRenderer2": null,
+          "_currentValue": Object {},
+          "_currentValue2": Object {},
+          "_defaultValue": Object {},
+        },
+        "Provider": [Function],
+      },
+      "c": Object {
+        "Consumer": Object {
+          "$$typeof": Symbol(react.context),
+          "Consumer": [Circular],
+          "Provider": Object {
+            "$$typeof": Symbol(react.provider),
+            "_context": [Circular],
+          },
+          "_calculateChangedBits": null,
+          "_changedBits": 0,
+          "_changedBits2": 0,
+          "_currentRenderer": null,
+          "_currentRenderer2": null,
+          "_currentValue": Object {},
+          "_currentValue2": Object {},
+          "_defaultValue": Object {},
+        },
+        "Provider": [Function],
+      },
+    }
+  }
+>
+  <CProvider>
+    <use(AProvider)>
+      <AProvider
+        c={Object {}}
+      >
+        <use(use(BProvider))>
+          <use(BProvider)
+            a={
+              Object {
+                "data": "Hello world",
+              }
+            }
+          >
+            <BProvider
+              a={
+                Object {
+                  "data": "Hello world",
+                }
+              }
+              c={Object {}}
+            >
+              <div />
+            </BProvider>
+          </use(BProvider)>
+        </use(use(BProvider))>
+      </AProvider>
+    </use(AProvider)>
+  </CProvider>
+</Component>
+`;
