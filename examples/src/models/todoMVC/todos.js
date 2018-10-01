@@ -28,7 +28,7 @@ class TodosContextProvider extends React.Component {
   }
 
   // You can get access to the methods from context consumer
-  // This methods like reducers in Redux changes the state of application, but using react api
+  // This methods like reducers in Redux changes the state of the application but using react api
   add = (todo) => {
     this.setState((state) => ({
       data: {

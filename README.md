@@ -3,11 +3,12 @@
 React-providers is a library which helps you to work and manage React.Context components. The library offers you:
 
 - the single location to place your context models;
+- to implement your own business logic in contexts using familiar React components and react-lifecycle methods;
 - simple syntax with HOC components like react-redux.connect;
 - an easy way to include another context when it became required;
-- working with dependencies between your contexts. So you should just describe dependencies and react-providers will build a correct hierarchy for you. You can see comments example to get more information about managing dependencies;
-- This library depends only on `hoist-non-react-statics`, so you wouldn't get a lot of npm modules after installing.
-- Implement your own business logic in contexts using react-lifecycle methods or methods that could be accessible from Consumers.
+- to work with dependencies between your contexts. So you should just describe dependencies and react-providers will build a correct hierarchy for you. You can see comments example to get more information about managing dependencies;
+- working both in server and client
+- this library depends only on `hoist-non-react-statics`, so you wouldn't get a lot of npm modules after installing.
 
 ## Install
 
@@ -23,11 +24,11 @@ npm install --save react-providers
 
 ## Usage step by step
 
-### Step 1: Create your context react component:
+### Step 1: Create your context React component:
 
 Implement your own React.Component using React.Context:
 
-https://github.com/xnimorz/react-providers/blob/master/examples/src/models/todoMVC/todos.js — in this file we use react lifecycle methods to store updates in localStorage.
+https://github.com/xnimorz/react-providers/blob/master/examples/src/models/todoMVC/todos.js — in this file we use React lifecycle methods to store updates in localStorage.
 
 ```javascript
 import React from 'react';
@@ -37,11 +38,11 @@ class TodosContextProvider extends React.Component {
   state = {
     list: lsData || [],
   };
-  // We can use react lifecycle methods to organise our work!
+  // We can use React lifecycle methods to organise our work!
   componentDidUpdate() {}
 
   // You can get access to the methods from context consumer
-  // This methods like reducers in Redux changes the state of application, but using react api
+  // This methods like reducers in Redux changes the state of the application but using React api
   add = (todo) => {
     this.setState((state) => ({
         list: [
@@ -163,7 +164,38 @@ const bContext: IContext = {
 ReactDOM.render(<AppProvider contexts={{ a: aContext, b: bContext }} />);
 ```
 
-## Motivation
+## Developer Experience
+
+### About redux
+
+Redux (https://github.com/reduxjs/redux) is a great library that offers you time traveling and to store all application data in one place. It uses actions to describe what happens in application and reducers to implement the data logic of your application. To implement async action creators we can use our own middleware or existed middleware like redux-saga or redux-thunk. Redux offers us a great and pretty clear API to build our applications.
+But we'll have lots of boilerplate code to describe all actions, reducers etc. If you create not a too big application you probably don't need redux.
+
+### How to work without redux and any other library. Just using react
+
+On the other hand, you probably don't need redux. Our React components can work without redux. And they do work.
+We can implement a method `addTodo` to the React component called `Todos`, which adds a new todo to the list that stored in the component state. Then we can transfer this `addTodo` method as a prop to other components. By this way, components can call `addTodo`.
+In described case `addTodo` calls `this.setState` method to set a new state to our `Todos` React component. _`addTodo` implements the reducer pattern in our application._ So `addTodo` is pretty similar to reducers in Redux. Moreover, react.lifecycle methods offer you to implement middlewares logic in react. You can add you own logic to componentDidMount, DidUpdate etc. methods. Consequently, we can work using only React API and React boilerplates to implement both view and business logic, because React already has methods that you need to implement your business logic.
+
+Let's have a look at the way how we can work without redux:
+
+1. We can implement our business or async logic locally using React components. To transfer data from one component to another we can use props.
+2. When or if this logic becomes necessary in several places in our application we can move it to React Context.
+3. When one context depends on another context we can decompose them and place them in the correct order in React components tree.
+
+OR
+
+When we realize the logic becomes necessary in several places in our app we can move it to React Context and put it to react-providers.AppProvider component. And now we won't mind about where we should add Consumer for context. We just use `use` HOC where we need like react-redux.connect.
+
+### About react-providers props
+
+React-providers works with React.Context and offers you an easy way to combine and to store Contexts in one place. You work with familiar Components state. It hasn't any additional boilerplate code.
+React-providers manage your dependencies between contexts, so you don't mind about the right order of contexts in React components tree.
+
+### When it's better not to use react-providers
+
+1. If you have very complicated use cases with complicated async logic it could be better to use redux. Any regular cases you can easily implement using React Components.
+2. If you already use redux :)
 
 ## Dependencies resolver
 
