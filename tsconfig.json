@@ -3,8 +3,10 @@
     "module": "commonjs",
     "target": "es5",
     "outDir": "./lib",
+    "lib": ["es5", "es2015", "dom"],
     "jsx": "react",
-    "isolatedModules": true
+    "declaration": true
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "test"]
 }

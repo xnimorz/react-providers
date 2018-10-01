@@ -25,7 +25,6 @@ export interface IContextMap {
 
 const _contexts: IContextMap = {};
 
-// TODO: use statefull component instead of stateless
 export const AppProvider = (data: { contexts: IContextMap; children?: JSX.Element }) => {
   const providers: React.ComponentType[] = [];
   const { contexts, children } = data;

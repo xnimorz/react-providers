@@ -5,7 +5,7 @@
   "main": "./lib",
   "scripts": {
     "test": "jest",
-    "build": "tsc -p ./",
+    "build": "yarn jest && tsc -p ./",
     "start": "npm run build -- -w"
   },
   "keywords": [
@@ -27,12 +27,6 @@
   "devDependencies": {
     "@types/jest": "^23.3.2",
     "@types/react": "^16.4.14",
-    "babel-cli": "^6.26.0",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-object-assign": "^6.22.0",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
     "enzyme": "^3.6.0",
     "enzyme-adapter-react-16": "^1.5.0",
     "enzyme-to-json": "^3.3.4",
