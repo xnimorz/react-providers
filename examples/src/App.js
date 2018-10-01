@@ -66,6 +66,9 @@ class App extends PureComponent {
             >
               Comments example
             </Button>
+            <Button href="https://github.com/xnimorz/react-providers" target="_blank">
+              View project on GitHub
+            </Button>
           </div>
         </header>
         <div className="app__content">
