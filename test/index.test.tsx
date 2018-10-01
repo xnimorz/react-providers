@@ -4,11 +4,11 @@ import * as ReactDOM from 'react-dom';
 import { AppProvider, use, IContext } from '../src';
 
 import { contextWithDependency } from './contexts/ContextWithDependency';
-import { context } from './contexts/SomeContext';
+import { context, ITodoList } from './contexts/SomeContext';
 import { a, b } from './contexts/ContextsWithCyclicDependencies';
 import { aContext, bContext, cContext } from './contexts/ComplexDependenciesContexts';
 
-describe('AppProvider', () => {
+describe('<AppProvider>', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<AppProvider contexts={{}} />, div);
@@ -69,5 +69,73 @@ describe('AppProvider', () => {
       </AppProvider>
     );
     expect(tree).toMatchSnapshot();
+  });
+});
+
+describe('<Use>', () => {
+  class WrappedComponent extends React.Component {
+    render() {
+      return <div />;
+    }
+  }
+  it('renders without crashing', () => {
+    const UseSome = use('some')(WrappedComponent);
+    const div = document.createElement('div');
+    ReactDOM.render(
+      <AppProvider contexts={{ some: context }}>
+        <UseSome />
+      </AppProvider>,
+      div
+    );
+    ReactDOM.unmountComponentAtNode(div);
+  });
+  it('renders correctly', () => {
+    const UseSome = use('some')(WrappedComponent);
+    const tree = Enzyme.mount(
+      <AppProvider contexts={{ some: context }}>
+        <UseSome />
+      </AppProvider>
+    );
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('adds access to context data to wrapped component', () => {
+    class WrappedComponent extends React.Component<{ some: { data: ITodoList; add: Function } }, {}> {
+      componentDidMount() {
+        expect(this.props.some.data.list).toEqual([]);
+      }
+      render() {
+        return <div />;
+      }
+    }
+    const UseSome = use('some')(WrappedComponent);
+    const tree = Enzyme.mount(
+      <AppProvider contexts={{ some: context }}>
+        <UseSome />
+      </AppProvider>
+    );
+  });
+
+  it('adds access to context data and methods to wrapped component', () => {
+    class WrappedComponent extends React.Component<{ some: { data: ITodoList; add: Function } }, {}> {
+      componentDidMount() {
+        this.props.some.add('Some todo');
+      }
+      componentDidUpdate() {
+        expect(this.props.some.data.list[0].text).toBe('Some todo');
+      }
+      render() {
+        return <div />;
+      }
+    }
+    const UseSome = use('some')(WrappedComponent);
+    const tree = Enzyme.mount(
+      <AppProvider contexts={{ some: context }}>
+        <UseSome />
+      </AppProvider>
+    );
+
+    tree.update();
   });
 });

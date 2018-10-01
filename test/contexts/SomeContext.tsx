@@ -3,14 +3,22 @@ import { IContext } from '../../src';
 
 const TodosContext = React.createContext({});
 
-interface ITodo {
+export interface ITodo {
   id: number;
   text: string;
   completed: boolean;
 }
 
-class TodosContextProvider extends React.Component<{}, { data: { list: ITodo[] } }> {
-  state: Readonly<{ data: { list: ITodo[] } }> = {
+export interface ITodoList {
+  list: ITodo[];
+}
+
+export interface ITodoProps {
+  data: ITodoList;
+}
+
+class TodosContextProvider extends React.Component<{}, ITodoProps> {
+  state: Readonly<ITodoProps> = {
     data: { list: [] },
   };
 

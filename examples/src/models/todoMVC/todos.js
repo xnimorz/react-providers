@@ -28,6 +28,7 @@ class TodosContextProvider extends React.Component {
   }
 
   // You can get access to the methods from context consumer
+  // This methods like reducers in Redux changes the state of application, but using react api
   add = (todo) => {
     this.setState((state) => ({
       data: {
@@ -75,6 +76,7 @@ class TodosContextProvider extends React.Component {
   };
 
   render() {
+    // describe data that will be Context.Provider value (we can use here memoization, or move it to state to avoid unnecessary rerenders)
     const value = {
       data: this.state.data,
       add: this.add,
