@@ -1,4 +1,4 @@
-# react-provides
+# react-providers
 
 React-providers is a library which helps you to work and manage React.Context components. The library offers you:
 
@@ -165,6 +165,46 @@ ReactDOM.render(<AppProvider contexts={{ a: aContext, b: bContext }} />);
 ```
 
 ## Developer Experience
+
+### Why I should use react-providers instead of plain react.Context?
+
+1. The centralised place to store and manage our logic
+
+You can store your context in one place where you paste AppProvider component (as a rule, it's better to put it at the beginning of React tree).
+You won't spend the time to manage dependencies between components. it's enough to declare dependency using `use` HOC in Providers (like in examples above). You have only one limitation — cyclic dependencies aren't allowed.
+
+2. Reduce code wrapping
+
+As a rule, each model, which presented by React.Context component, should have only a single responsibility (SOLID principles). In our React components, we often want to get data from several Consumers. In such cases our code would be:
+
+```javascript
+function YourComponent() {
+  return (
+    <UsersConsumer>
+      {(users) =>
+        <TopicsConsumer>
+          {(topics) =>
+            <CommentsConsumer>{(comments) => /*Your data*/ }</CommentsConsumer>
+          }
+        </TopicsConsumer>
+      }
+    </UsersConsumer>
+  );
+}
+export default YourComponent;
+```
+
+Let's compare this example to the same example with react-providers lib:
+
+```javascript
+function YourComponent() {
+  const { users, topics, comments } = this.props;
+  return (/*Your data*/);
+}
+export default use('users')(('topics')(('comments')(YourComponent)));
+```
+
+We encapsulated all consumers' logic to our HOC component `use`. In component, we paid attention to _How our component should work and what data it should return_.
 
 ### About redux
 
