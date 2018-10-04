@@ -242,3 +242,7 @@ React-providers manage your dependencies between contexts, so you don't mind abo
 This library resolves automatically dependencies between Providers. It means you can create two contexts AContext and BContext. BContext can depend on AContext, and the application will work correctly.
 
 The main limitation is you should create cyclic dependencies. e.g. BContext can depend on AContext, but AContext can't depend on BContext simultaneously.
+
+## License
+
+MIT License
