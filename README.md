@@ -10,6 +10,10 @@ React-providers is a library which helps you to work and manage React.Context co
 - working both in server and client
 - this library depends only on `hoist-non-react-statics`, so you wouldn't get a lot of npm modules after installing.
 
+### Demo
+
+Here is several examples: https://xnimorz.github.io/react-providers/
+
 ## Install
 
 ```
