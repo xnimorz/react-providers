@@ -2,3 +2,13 @@
 .todoapp h1 {
   top: -230px;
 }
+
+.todoapp {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.todo-list li .destroy {
+  display: block;
+}
