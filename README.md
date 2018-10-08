@@ -1,3 +1,5 @@
+Доклад для иннополиса https://docs.google.com/presentation/d/11XWZ437loND9dXXowKnfEvSInjuSU5yNWNlHgjlXgNM/edit?usp=sharing
+
 # react-providers
 
 React-providers is a library which helps you to work and manage React.Context components. The library offers you:
