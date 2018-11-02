@@ -2,13 +2,28 @@
 
 React-providers is a library which helps you to work and manage React.Context components. The library offers you:
 
+- simple syntax with HOC components like react-redux.connect;
 - the single location to place your context models;
 - to implement your own business logic in contexts using familiar React components and react-lifecycle methods;
-- simple syntax with HOC components like react-redux.connect;
 - an easy way to include another context when it became required;
 - to work with dependencies between your contexts. So you should just describe dependencies and react-providers will build a correct hierarchy for you. You can see comments example to get more information about managing dependencies;
 - working both in server and client
 - this library depends only on `hoist-non-react-statics`, so you wouldn't get a lot of npm modules after installing.
+
+## Contents
+
+- [Demo](#demo)
+- [Install](#install)
+- [Usage step by step](#usage-step-by-step)
+  - [Using only a HOC for context](#using-only-a-hoc-for-context)
+  - [Working with the store and connect to it](#working-with-the-store-and-connect-to-it)
+- [Developer experience](#developer-experience)
+  - [Why I should use react-providers instead of plain react.Context?](#why-i-should-use-react-providers-instead-of-plain-react.context)
+  - [About react-providers pros](#about-react-providers-pros)
+  - [About redux](#about-redux)
+  - [How to work without redux and any other library. Just using react](#how-to-work-without-redux-and-any-other-library.-Just-using-react)
+- [Dependencies resolver](#dependencies-resolver)
+- [License](#License)
 
 ### Demo
 
@@ -28,7 +43,36 @@ npm install --save react-providers
 
 ## Usage step by step
 
-### Step 1: Create your context React component:
+This library can work in two mods:
+
+1. Use only HOC for Context
+2. Create the store with lots of context components
+
+Let's see how to use library in both ways
+
+### Using only a HOC for context
+
+1. Implement your own React.Component using React.Context or just using React.Context:
+
+```javascript
+export const TodosContext = React.createContext(['Do some work', 'Close task in jira']);
+```
+
+2. Connect to this context using HOC `use`:
+
+```javascript
+import { TodosContext } from './path/to/TodosContext';
+
+function MyComponent({ todos }) {
+  console.log(todos); // ['Do some work', 'Close task in jira']
+}
+
+export default use({ todos: TodosContext })(MyComponent);
+```
+
+### Working with the store and connect to it
+
+#### Step 1: Create your context React component:
 
 Implement your own React.Component using React.Context:
 
@@ -78,7 +122,7 @@ export default {
 };
 ```
 
-### Step 2: Add the context to react-providers.AppProvider:
+#### Step 2: Add the context to react-providers.AppProvider:
 
 Then, you can add your providers to the AppProvider:
 
@@ -97,13 +141,14 @@ reactDOM.render(
 );
 ```
 
-### Step 3: Getting access to data from the context
+#### Step 3: Getting access to data from the context
 
 We can use `use` HOC to get access to data that we store with `AppProvider` component:
 
 ```javascript
 import React from 'react';
 import { use } from 'react-providers';
+import todos from './path/to/todos';
 
 class Example extends React.Component {
   componentDidMount() {
@@ -117,12 +162,12 @@ class Example extends React.Component {
   }
 }
 
-export default use('todos')(Example);
+export default use({ todos })(Example);
 ```
 
 See more examples here: https://xnimorz.github.io/react-providers/
 
-### Step 4 (optional): create context which depends on another context
+#### Step 4 (optional): create context which depends on another context
 
 `AppProvider` automatically builds correct Context tree that resolves dependencies between contexts. To get access from one context to another you can use `use` HOC:
 
@@ -168,7 +213,7 @@ const bContext: IContext = {
 ReactDOM.render(<AppProvider contexts={{ a: aContext, b: bContext }} />);
 ```
 
-## Developer Experience
+## Developer experience
 
 ### Why I should use react-providers instead of plain react.Context?
 
@@ -205,10 +250,23 @@ function YourComponent() {
   const { users, topics, comments } = this.props;
   return (/*Your data*/);
 }
-export default use('users')(('topics')(('comments')(YourComponent)));
+// 1) connection using Object:
+export default use({
+  users: UserContext,
+  topics: TopicsContext,
+  comments: CommentsContext
+})(YourComponent)));
+// 2) or using array:
+export default use('users', 'topics', 'comments')(YourComponent)));
 ```
 
 We encapsulated all consumers' logic to our HOC component `use`. In component, we paid attention to _How our component should work and what data it should return_.
+
+### About react-providers pros
+
+React-providers works with React.Context and offers you an easy way to combine and to store Contexts in one place. You work with familiar Components state. It hasn't any additional boilerplate code.
+React-providers manage your dependencies between contexts, so you don't mind about the right order of contexts in React components tree.
+HOC `use` allows you to describe dependencies using objects, arrays or string.
 
 ### About redux
 
@@ -230,16 +288,6 @@ Let's have a look at the way how we can work without redux:
 OR
 
 When we realize the logic becomes necessary in several places in our app we can move it to React Context and put it to react-providers.AppProvider component. And now we won't mind about where we should add Consumer for context. We just use `use` HOC where we need like react-redux.connect.
-
-### About react-providers props
-
-React-providers works with React.Context and offers you an easy way to combine and to store Contexts in one place. You work with familiar Components state. It hasn't any additional boilerplate code.
-React-providers manage your dependencies between contexts, so you don't mind about the right order of contexts in React components tree.
-
-### When it's better not to use react-providers
-
-1. If you have very complicated use cases with complicated async logic it could be better to use redux. Any regular cases you can easily implement using React Components.
-2. If you already use redux :)
 
 ## Dependencies resolver
 

@@ -1,20 +1,34 @@
 {
   "name": "react-providers",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Library for creating your own business logic using react.context",
   "main": "./lib",
   "scripts": {
     "test": "jest",
     "build": "yarn jest && tsc -p ./",
-    "start": "npm run build -- -w"
+    "start": "npm run build -- -w",
+    "size": "yarn build && size-limit"
   },
+  "size-limit": [
+    {
+      "limit": "2Kb",
+      "path": "./lib/index.js"
+    },
+    {
+      "limit": "2Kb",
+      "path": "./lib/components/use.js"
+    }
+  ],
   "keywords": [
     "context",
     "react",
     "react-context",
     "context-provider",
     "provider",
-    "consumers"
+    "consumers",
+    "react-context-api",
+    "state-management",
+    "state-manager"
   ],
   "author": "Nikita Mostovoy (nik.mostovoy@gmail.com)",
   "license": "MIT",
@@ -33,6 +47,7 @@
     "jest": "^23.6.0",
     "react": "^16.4.1",
     "react-dom": "^16.5.2",
+    "size-limit": "^0.21.0",
     "ts-jest": "^23.10.3",
     "typescript": "^3.0.3"
   }

@@ -3,6 +3,7 @@ import { use } from 'react-providers';
 
 import ToggleAll from '../ToggleAll';
 import Todo from '../Todo';
+import todos from '../../models/todoMVC/todos';
 
 class TodoList extends Component {
   renderToggleAllControl() {
@@ -32,4 +33,4 @@ class TodoList extends Component {
   }
 }
 
-export default use('todos')(TodoList);
+export default use({ todos })(TodoList);

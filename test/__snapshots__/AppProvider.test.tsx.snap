@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<AppProvider> adds Context.Provider when rendering 1`] = `
-<Component
+<AppProvider
   contexts={
     Object {
       "some": Object {
@@ -27,13 +27,13 @@ exports[`<AppProvider> adds Context.Provider when rendering 1`] = `
   <TodosContextProvider>
     <div />
   </TodosContextProvider>
-</Component>
+</AppProvider>
 `;
 
 exports[`<AppProvider> renders correctly 1`] = `""`;
 
 exports[`<AppProvider> resolves dependencies in contexts 1`] = `
-<Component
+<AppProvider
   contexts={
     Object {
       "contextWithDependency": Object {
@@ -89,11 +89,11 @@ exports[`<AppProvider> resolves dependencies in contexts 1`] = `
       </ContextWithDependencyProvider>
     </use(ContextWithDependencyProvider)>
   </TodosContextProvider>
-</Component>
+</AppProvider>
 `;
 
 exports[`<AppProvider> works with complex dependencies e.g. A depends on C, B depends both on A and on C 1`] = `
-<Component
+<AppProvider
   contexts={
     Object {
       "a": Object {
@@ -139,7 +139,7 @@ exports[`<AppProvider> works with complex dependencies e.g. A depends on C, B de
             "_context": [Circular],
           },
           "_calculateChangedBits": null,
-          "_currentRenderer": null,
+          "_currentRenderer": Object {},
           "_currentRenderer2": null,
           "_currentValue": Object {},
           "_currentValue2": Object {},
@@ -153,73 +153,30 @@ exports[`<AppProvider> works with complex dependencies e.g. A depends on C, B de
   <CProvider>
     <use(AProvider)>
       <AProvider
-        c={Object {}}
+        c={
+          Object {
+            "data": "Hello world",
+          }
+        }
       >
-        <use(use(BProvider))>
-          <use(BProvider)
+        <use(BProvider)>
+          <BProvider
             a={
               Object {
                 "data": "Hello world",
               }
             }
-          >
-            <BProvider
-              a={
-                Object {
-                  "data": "Hello world",
-                }
+            c={
+              Object {
+                "data": "Hello world",
               }
-              c={Object {}}
-            >
-              <div />
-            </BProvider>
-          </use(BProvider)>
-        </use(use(BProvider))>
+            }
+          >
+            <div />
+          </BProvider>
+        </use(BProvider)>
       </AProvider>
     </use(AProvider)>
   </CProvider>
-</Component>
-`;
-
-exports[`<Use> renders correctly 1`] = `
-<Component
-  contexts={
-    Object {
-      "some": Object {
-        "Consumer": Object {
-          "$$typeof": Symbol(react.context),
-          "Consumer": [Circular],
-          "Provider": Object {
-            "$$typeof": Symbol(react.provider),
-            "_context": [Circular],
-          },
-          "_calculateChangedBits": null,
-          "_currentRenderer": Object {},
-          "_currentRenderer2": null,
-          "_currentValue": Object {},
-          "_currentValue2": Object {},
-          "unstable_read": [Function],
-        },
-        "Provider": [Function],
-      },
-    }
-  }
->
-  <TodosContextProvider>
-    <use(WrappedComponent)>
-      <WrappedComponent
-        some={
-          Object {
-            "add": [Function],
-            "data": Object {
-              "list": Array [],
-            },
-          }
-        }
-      >
-        <div />
-      </WrappedComponent>
-    </use(WrappedComponent)>
-  </TodosContextProvider>
-</Component>
+</AppProvider>
 `;

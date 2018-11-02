@@ -4,6 +4,7 @@ import { use } from 'react-providers';
 
 import CommentsList from '../CommentsList';
 import Button from '../../common/Button';
+import comments from '../../models/comments/comments';
 
 import './styles.css';
 
@@ -18,4 +19,4 @@ class CommentsPage extends Component {
   }
 }
 
-export default use('comments')(CommentsPage);
+export default use({ comments })(CommentsPage);

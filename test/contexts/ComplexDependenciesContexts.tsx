@@ -44,7 +44,7 @@ class BProvider extends React.Component<{}, { data: string }> {
 // Each module should provide 2 components — Consumer and Provider
 export const bContext: IContext = {
   Consumer: B.Consumer,
-  Provider: use('a')(use('c')(BProvider)),
+  Provider: use(['a', 'c'])(BProvider),
 };
 
 const C = React.createContext({});
@@ -60,7 +60,7 @@ class CProvider extends React.Component<{}, { data: string }> {
     };
 
     // Provide value to consumer
-    return <A.Provider value={value}>{this.props.children}</A.Provider>;
+    return <C.Provider value={value}>{this.props.children}</C.Provider>;
   }
 }
 

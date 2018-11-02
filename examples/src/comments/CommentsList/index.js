@@ -4,6 +4,8 @@ import { use } from 'react-providers';
 import Loader from '../../common/Loader';
 import statuses from '../../models/comments/statuses';
 import Comment from '../Comment';
+import comments from '../../models/comments/comments';
+import users from '../../models/comments/users';
 
 import './styles.css';
 
@@ -22,5 +24,4 @@ class CommentsList extends Component {
   }
 }
 
-// you can use several dependencies through several use calls
-export default use('comments')(use('users')(CommentsList));
+export default use({ comments, users })(CommentsList);

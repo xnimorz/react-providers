@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Input from '../../common/Input';
 
+import todos from '../../models/todoMVC/todos';
 import { use } from 'react-providers';
 
 class TodoInput extends Component {
@@ -20,4 +21,4 @@ class TodoInput extends Component {
   }
 }
 
-export default use('todos')(TodoInput);
+export default use({ todos })(TodoInput);

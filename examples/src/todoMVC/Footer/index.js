@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { use } from 'react-providers';
 
+import todos from '../../models/todoMVC/todos';
 import Filters from '../Filters';
 
 class Footer extends Component {
@@ -18,4 +19,4 @@ class Footer extends Component {
   }
 }
 
-export default use('todos')(Footer);
+export default use({ todos })(Footer);
