@@ -1,6 +1,7 @@
 {
   "name": "examples",
   "version": "0.1.0",
+  "homepage": "https://xnimorz.github.io/react-providers",
   "private": true,
   "dependencies": {
     "react": "^16.5.2",
@@ -11,6 +12,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "eject": "react-scripts eject"
   }
 }
