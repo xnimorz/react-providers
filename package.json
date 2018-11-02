@@ -1,6 +1,6 @@
 {
   "name": "react-providers",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Library for creating your own business logic using react.context",
   "main": "./lib",
   "scripts": {
