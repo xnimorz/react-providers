@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-
 import { use } from 'react-providers';
 
 import CommentsList from '../CommentsList';
 import Button from '../../common/Button';
-import comments from '../../models/comments/comments';
+
+import comments from '../models/comments';
 
 import './styles.css';
 

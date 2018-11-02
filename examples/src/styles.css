@@ -1,17 +1,51 @@
 .app__header {
   background-color: #222;
-  height: 80;
-  padding: 20px;
-  color: white;
+  padding: 10px 20px;
+}
+
+.app__headerContent {
   display: flex;
+  color: #fff;
   align-items: center;
   justify-content: space-between;
+  flex-direction: column;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 800px) {
+  .app__headerContent {
+    flex-direction: row;
+  }
 }
 
 .app__title {
   font-size: 24px;
+  margin: 0;
 }
 
 .app__content {
   padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.app__version {
+  font-size: 24px;
+  text-decoration: underline;
+  margin: 0 0 0 15px;
+  color: #fff;
+}
+
+.app__version:visited {
+  color: #fff;
+}
+
+.app__project {
+  display: flex;
+  align-items: baseline;
+}
+
+.app__viewsSwitcher {
+  display: flex;
 }

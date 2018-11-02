@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './styles.css';
 
 import { AppProvider } from 'react-providers';
-import todos from '../../models/todoMVC/todos';
+import todos from '../models/todos';
 import TodoInput from '../TodoInput';
 import TodoList from '../TodoList';
 import Footer from '../Footer';
@@ -36,6 +36,12 @@ class TodoMVCApp extends Component {
           </section>
           <Footer filter={this.state.filter} filters={FILTERS} setFilter={(filter) => this.setState({ filter })} />
         </section>
+        <p>
+          View this example on github:{' '}
+          <a target="_blank" href="https://github.com/xnimorz/react-providers/tree/master/examples/src/todoMVC">
+            https://github.com/xnimorz/react-providers/tree/master/examples/src/todoMVC
+          </a>
+        </p>
       </AppProvider>
     );
   }

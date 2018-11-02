@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { use } from 'react-providers';
 
-import todos from '../../models/todoMVC/todos';
+import todos from '../models/todos';
 import Filters from '../Filters';
 
 class Footer extends Component {

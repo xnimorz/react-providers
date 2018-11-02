@@ -3,7 +3,7 @@ import { use } from 'react-providers';
 
 import ToggleAll from '../ToggleAll';
 import Todo from '../Todo';
-import todos from '../../models/todoMVC/todos';
+import todos from '../models/todos';
 
 class TodoList extends Component {
   renderToggleAllControl() {

@@ -2,9 +2,9 @@ import React, { PureComponent } from 'react';
 import logo from './logo.svg';
 import './styles.css';
 
-import Button from './common/Button';
+import MenuButton from './common/MenuButton';
 import MainInfo from './info/MainInfo';
-import TodoMVC from './todoMVC/TodoMVC';
+import TodoMVC from './todoMVC/Entry';
 import CommentsEntry from './comments/Entry';
 
 const VIEWS = {
@@ -40,35 +40,46 @@ class App extends PureComponent {
     return (
       <div className="app">
         <header className="app__header">
-          <h1 className="app__title">Welcome to react-providers</h1>
-          <div className="app__viewsSwitcher">
-            <Button
-              clicked={this.state.view === VIEWS.INFO}
-              onClick={() => {
-                this.setState({ view: VIEWS.INFO });
-              }}
-            >
-              Library docs
-            </Button>
-            <Button
-              clicked={this.state.view === VIEWS.TODO}
-              onClick={() => {
-                this.setState({ view: VIEWS.TODO });
-              }}
-            >
-              TodoMVC example
-            </Button>
-            <Button
-              clicked={this.state.view === VIEWS.COMMENTS}
-              onClick={() => {
-                this.setState({ view: VIEWS.COMMENTS });
-              }}
-            >
-              Comments example
-            </Button>
-            <Button href="https://github.com/xnimorz/react-providers" target="_blank">
-              View project on GitHub
-            </Button>
+          <div className="app__headerContent">
+            <div className="app__project">
+              <h1 className="app__title">React-providers</h1>
+              <a
+                href="https://github.com/xnimorz/react-providers/blob/master/CHANGELOG.md"
+                target="_blank"
+                className="app__version"
+              >
+                2.0
+              </a>
+            </div>
+            <div className="app__viewsSwitcher">
+              <MenuButton
+                clicked={this.state.view === VIEWS.INFO}
+                onClick={() => {
+                  this.setState({ view: VIEWS.INFO });
+                }}
+              >
+                About
+              </MenuButton>
+              <MenuButton
+                clicked={this.state.view === VIEWS.TODO}
+                onClick={() => {
+                  this.setState({ view: VIEWS.TODO });
+                }}
+              >
+                TodoMVC example
+              </MenuButton>
+              <MenuButton
+                clicked={this.state.view === VIEWS.COMMENTS}
+                onClick={() => {
+                  this.setState({ view: VIEWS.COMMENTS });
+                }}
+              >
+                Comments example
+              </MenuButton>
+              <MenuButton href="https://github.com/xnimorz/react-providers" target="_blank">
+                GitHub
+              </MenuButton>
+            </div>
           </div>
         </header>
         <div className="app__content">
