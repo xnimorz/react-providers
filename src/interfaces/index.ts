@@ -11,8 +11,8 @@ export interface IComponentAdditionals {
 }
 
 export interface IContext {
-  Provider: React.ComponentType & IComponentAdditionals;
-  Consumer: React.ComponentType;
+  Provider: React.ComponentType<any> & IComponentAdditionals;
+  Consumer: React.ComponentType<any>;
   status?: ContextStatuses;
 }
 

@@ -1,3 +1,25 @@
+# 2.0.1
+
+- Fix type of IContext from
+
+```javascript
+export interface IContext {
+  Provider: React.ComponentType & IComponentAdditionals;
+  Consumer: React.ComponentType;
+  status?: ContextStatuses;
+}
+```
+
+to
+
+```javascript
+export interface IContext {
+  Provider: React.ComponentType<any> & IComponentAdditionals;
+  Consumer: React.ComponentType<any>;
+  status?: ContextStatuses;
+}
+```
+
 # 2.0
 
 - HOC `use` can accept `array<string>` and objects besides `string`. If you want to use the object, it should be:
