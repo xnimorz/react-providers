@@ -1,3 +1,8 @@
+# 2.0.2
+
+- Up dev dependencies to get rid of security vulnerabilities 
+- Remove examples and all excess files from the package
+
 # 2.0.1
 
 - Fix type of IContext from
